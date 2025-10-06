@@ -6,8 +6,8 @@ import 'app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize config for development (default)
-  AppConfig.initialize(Environment.development);
+  // Initialize config for production
+  AppConfig.initialize(Environment.production);
 
   // Initialize local storage
   await LocalStorageService.init();
