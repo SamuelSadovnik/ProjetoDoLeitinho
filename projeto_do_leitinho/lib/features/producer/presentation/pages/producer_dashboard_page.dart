@@ -267,24 +267,6 @@ class _ProducerDashboardPageState extends State<ProducerDashboardPage> {
                       padding: const EdgeInsets.all(20),
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Exportando PDF...'),
-                          backgroundColor: AppColors.info,
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.picture_as_pdf),
-                    label: const Text('Exportar PDF'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: AppColors.primaryGreen,
-                      side: const BorderSide(color: AppColors.primaryGreen),
-                      padding: const EdgeInsets.all(20),
-                    ),
-                  ),
                 ],
               ),
             ),

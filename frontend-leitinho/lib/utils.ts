@@ -1,6 +1,45 @@
+// Função auxiliar para parsear datas em diferentes formatos
+function parseDate(dateString: string): Date | null {
+  if (!dateString) return null;
+  
+  let normalized = dateString.trim();
+  
+  // Formato brasileiro: "dd/MM/yyyy HH:mm:ss" ou "dd/MM/yyyy HH:mm"
+  if (normalized.includes('/')) {
+    const parts = normalized.split(' ');
+    const datePart = parts[0]; // dd/MM/yyyy
+    const timePart = parts[1] || '00:00:00'; // HH:mm:ss
+    
+    const [day, month, year] = datePart.split('/');
+    if (day && month && year) {
+      // Converte para formato ISO: yyyy-MM-ddTHH:mm:ss
+      normalized = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}T${timePart}`;
+    }
+  }
+  // Formato ISO com espaço: "yyyy-MM-dd HH:mm:ss" ou "yyyy-MM-dd HH:mm:ss.SSS"
+  else if (normalized.includes(' ') && !normalized.includes('T')) {
+    normalized = normalized.replace(' ', 'T');
+    // Remove milissegundos se existirem
+    const parts = normalized.split('.');
+    if (parts.length > 1) {
+      normalized = parts[0];
+    }
+  }
+  
+  const date = new Date(normalized);
+  
+  // Verifica se a data é válida
+  if (isNaN(date.getTime())) {
+    return null;
+  }
+  
+  return date;
+}
+
 export function formatDate(dateString: string): string {
   if (!dateString) return "-";
-  const date = new Date(dateString);
+  const date = parseDate(dateString);
+  if (!date) return "Data inválida";
   return date.toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "2-digit",
@@ -10,7 +49,8 @@ export function formatDate(dateString: string): string {
 
 export function formatDateTime(dateString: string): string {
   if (!dateString) return "-";
-  const date = new Date(dateString);
+  const date = parseDate(dateString);
+  if (!date) return "Data inválida";
   return date.toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "2-digit",
