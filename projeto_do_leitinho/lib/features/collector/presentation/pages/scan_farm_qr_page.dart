@@ -95,7 +95,7 @@ class _ScanFarmQrPageState extends State<ScanFarmQrPage> {
       // Se já temos a fazenda completa do QR Code
       if (farm != null) {
         if (mounted) {
-          Navigator.pushReplacement(
+          final result = await Navigator.push<bool>(
             context,
             MaterialPageRoute(
               builder: (_) => NewCollectionPage(
@@ -104,6 +104,16 @@ class _ScanFarmQrPageState extends State<ScanFarmQrPage> {
               ),
             ),
           );
+          // Se salvou a coleta, voltar para o dashboard com resultado true
+          if (result == true && mounted) {
+            Navigator.pop(context, true);
+          } else {
+            // Se voltou sem salvar, reiniciar o scanner
+            setState(() {
+              _isProcessing = false;
+            });
+            _scannerController?.start();
+          }
         }
         return;
       }
@@ -129,7 +139,7 @@ class _ScanFarmQrPageState extends State<ScanFarmQrPage> {
 
           if (mounted) {
             // Navegar para o formulário com a fazenda pré-selecionada
-            Navigator.pushReplacement(
+            final result = await Navigator.push<bool>(
               context,
               MaterialPageRoute(
                 builder: (_) => NewCollectionPage(
@@ -138,6 +148,16 @@ class _ScanFarmQrPageState extends State<ScanFarmQrPage> {
                 ),
               ),
             );
+            // Se salvou a coleta, voltar para o dashboard com resultado true
+            if (result == true && mounted) {
+              Navigator.pop(context, true);
+            } else {
+              // Se voltou sem salvar, reiniciar o scanner
+              setState(() {
+                _isProcessing = false;
+              });
+              _scannerController?.start();
+            }
           }
           return;
         }
@@ -157,13 +177,17 @@ class _ScanFarmQrPageState extends State<ScanFarmQrPage> {
     }
   }
 
-  void _goToManualSelection() {
-    Navigator.pushReplacement(
+  void _goToManualSelection() async {
+    final result = await Navigator.push<bool>(
       context,
       MaterialPageRoute(
         builder: (_) => NewCollectionPage(collector: widget.collector),
       ),
     );
+    // Se salvou a coleta, voltar para o dashboard com resultado true
+    if (result == true && mounted) {
+      Navigator.pop(context, true);
+    }
   }
 
   @override
