@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Leitinho - Sistema de Gestão de Coleta de Leite",
+  title: "Puro Lacteo - Sistema de Gestão de Coleta de Leite",
   description: "Sistema de gestão para coleta de leite em laticínios",
 };
 

@@ -29,8 +29,10 @@ export function Header() {
           {/* User */}
           <div className="flex items-center gap-3">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-medium text-[#2C3E50]">Administrador</p>
-              <p className="text-xs text-[#6E7F80]">admin@leitinho.com</p>
+              <p className="text-sm font-medium text-[#2C3E50]">
+                Administrador
+              </p>
+              <p className="text-xs text-[#6E7F80]">admin@purolacteo.com</p>
             </div>
             <div className="w-10 h-10 bg-[#A8D5BA]/40 rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-[#4C9A6A]" />

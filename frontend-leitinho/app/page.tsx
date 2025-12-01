@@ -19,7 +19,7 @@ export default function Home() {
               <div className="p-2 bg-[#4C9A6A] rounded-xl">
                 <Milk className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-xl font-bold text-[#2C3E50]">Leitinho</h1>
+              <h1 className="text-xl font-bold text-[#2C3E50]">Puro Lácteo</h1>
             </div>
             <Link
               href="/admin"
@@ -115,10 +115,10 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Milk className="w-5 h-5 text-[#4C9A6A]" />
-              <span className="font-semibold text-[#2C3E50]">Leitinho</span>
+              <span className="font-semibold text-[#2C3E50]">Puro Lácteo</span>
             </div>
             <p className="text-sm text-[#6E7F80]">
-              © 2025 Projeto do Leitinho. Todos os direitos reservados.
+              © 2025 Projeto do Puro Lácteo. Todos os direitos reservados.
             </p>
           </div>
         </div>

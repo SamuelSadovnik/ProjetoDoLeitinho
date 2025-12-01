@@ -69,8 +69,7 @@ export function Sidebar() {
               <Milk className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-[#2C3E50]">Leitinho</h1>
-              <p className="text-xs text-[#6E7F80]">Painel Admin</p>
+              <h1 className="text-lg font-bold text-[#2C3E50]">Puro Lácteo</h1>
             </div>
           </div>
 
