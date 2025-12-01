@@ -240,16 +240,19 @@ class _MonthlyComparisonPageState extends State<MonthlyComparisonPage> {
                                 barTouchData: BarTouchData(
                                   enabled: true,
                                   touchTooltipData: BarTouchTooltipData(
-                                    getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                                      final label = rodIndex == 0 ? 'Mês Anterior' : 'Mês Atual';
-                                      return BarTooltipItem(
-                                        '$label\n${rod.toY.toStringAsFixed(0)}L',
-                                        const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      );
-                                    },
+                                    getTooltipItem:
+                                        (group, groupIndex, rod, rodIndex) {
+                                          final label = rodIndex == 0
+                                              ? 'Mês Anterior'
+                                              : 'Mês Atual';
+                                          return BarTooltipItem(
+                                            '$label\n${rod.toY.toStringAsFixed(0)}L',
+                                            const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          );
+                                        },
                                   ),
                                 ),
                                 titlesData: FlTitlesData(
@@ -270,10 +273,14 @@ class _MonthlyComparisonPageState extends State<MonthlyComparisonPage> {
                                       interval: _getMaxY() / 4,
                                       getTitlesWidget: (value, meta) {
                                         return Padding(
-                                          padding: const EdgeInsets.only(right: 8),
+                                          padding: const EdgeInsets.only(
+                                            right: 8,
+                                          ),
                                           child: Text(
                                             value.toStringAsFixed(0),
-                                            style: const TextStyle(fontSize: 11),
+                                            style: const TextStyle(
+                                              fontSize: 11,
+                                            ),
                                           ),
                                         );
                                       },
@@ -421,19 +428,19 @@ class _MonthlyComparisonPageState extends State<MonthlyComparisonPage> {
     final maxValue = _currentMonthTotal > _previousMonthTotal
         ? _currentMonthTotal
         : _previousMonthTotal;
-    
+
     if (maxValue == 0) return 100;
-    
+
     // Adiciona 20% de margem e arredonda para um número bonito
     final withMargin = maxValue * 1.2;
-    
+
     if (withMargin <= 100) return 100;
     if (withMargin <= 500) return 500;
     if (withMargin <= 1000) return 1000;
     if (withMargin <= 2000) return 2000;
     if (withMargin <= 5000) return 5000;
     if (withMargin <= 10000) return 10000;
-    
+
     return (withMargin / 1000).ceil() * 1000;
   }
 }
