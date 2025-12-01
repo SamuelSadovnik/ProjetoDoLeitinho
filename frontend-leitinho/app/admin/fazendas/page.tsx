@@ -59,10 +59,13 @@ export default function FazendasPage() {
         usersApi.list(),
       ]);
 
-      setFazendas(fazendasRes.data || []);
-      setFilteredFazendas(fazendasRes.data || []);
+      const fazendasData = Array.isArray(fazendasRes.data)
+        ? fazendasRes.data
+        : [];
+      setFazendas(fazendasData);
+      setFilteredFazendas(fazendasData);
 
-      const allUsers = usersRes.data || [];
+      const allUsers = Array.isArray(usersRes.data) ? usersRes.data : [];
       const produtoresList = allUsers.filter(
         (u: User) => u.user?.iduserTypes === USER_TYPES.PRODUTOR
       );

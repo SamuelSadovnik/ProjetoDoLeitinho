@@ -44,9 +44,11 @@ export default function AdminDashboard() {
         collectionsApi.list(),
       ]);
 
-      const users = usersRes.data || [];
-      const farms = farmsRes.data || [];
-      const collections = collectionsRes.data || [];
+      const users = Array.isArray(usersRes.data) ? usersRes.data : [];
+      const farms = Array.isArray(farmsRes.data) ? farmsRes.data : [];
+      const collections = Array.isArray(collectionsRes.data)
+        ? collectionsRes.data
+        : [];
 
       // Count by type
       const produtores = users.filter(

@@ -55,10 +55,17 @@ export default function LaticiniosPage() {
         usersApi.list(),
       ]);
 
-      setLaticinios(laticiniosRes.data || []);
-      setFilteredLaticinios(laticiniosRes.data || []);
-      setUserDairies(userDairyRes.data || []);
-      setUsers(usersRes.data || []);
+      const laticiniosData = Array.isArray(laticiniosRes.data)
+        ? laticiniosRes.data
+        : [];
+      setLaticinios(laticiniosData);
+      setFilteredLaticinios(laticiniosData);
+      const userDairyData = Array.isArray(userDairyRes.data)
+        ? userDairyRes.data
+        : [];
+      setUserDairies(userDairyData);
+      const usersData = Array.isArray(usersRes.data) ? usersRes.data : [];
+      setUsers(usersData);
     } catch (error) {
       console.error("Error loading data:", error);
     } finally {

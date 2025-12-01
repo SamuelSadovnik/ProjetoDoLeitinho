@@ -74,7 +74,7 @@ export default function ColetasPage() {
         ]
       );
 
-      const allColetas = coletasRes.data || [];
+      const allColetas = Array.isArray(coletasRes.data) ? coletasRes.data : [];
       // Sort by date descending
       allColetas.sort(
         (a: Collection, b: Collection) =>
@@ -84,10 +84,14 @@ export default function ColetasPage() {
       setColetas(allColetas);
       setFilteredColetas(allColetas);
 
-      setFazendas(fazendasRes.data || []);
-      setAnimais(animaisRes.data || []);
+      const fazendasData = Array.isArray(fazendasRes.data)
+        ? fazendasRes.data
+        : [];
+      setFazendas(fazendasData);
+      const animaisData = Array.isArray(animaisRes.data) ? animaisRes.data : [];
+      setAnimais(animaisData);
 
-      const allUsers = usersRes.data || [];
+      const allUsers = Array.isArray(usersRes.data) ? usersRes.data : [];
       setProdutores(
         allUsers.filter(
           (u: User) => u.user?.iduserTypes === USER_TYPES.PRODUTOR

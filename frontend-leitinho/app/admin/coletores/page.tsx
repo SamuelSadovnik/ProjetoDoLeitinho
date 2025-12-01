@@ -69,7 +69,7 @@ export default function ColetoresPage() {
   async function loadColetores() {
     try {
       const response = await usersApi.list();
-      const allUsers = response.data || [];
+      const allUsers = Array.isArray(response.data) ? response.data : [];
       const coletoresList = allUsers.filter(
         (u: User) => u.user?.iduserTypes === USER_TYPES.COLETOR
       );
@@ -88,7 +88,8 @@ export default function ColetoresPage() {
       const response = await collectorsApi.history(coletor.iduser, {
         limit: 20,
       });
-      setColetorHistory(response.data || []);
+      const historyData = Array.isArray(response.data) ? response.data : [];
+      setColetorHistory(historyData);
       setIsHistoryModalOpen(true);
     } catch (error) {
       console.error("Error loading history:", error);

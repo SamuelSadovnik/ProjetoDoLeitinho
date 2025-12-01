@@ -22,8 +22,43 @@ async function request<T>(
   };
 
   const response = await fetch(url, config);
-  const data = await response.json();
-  return data;
+  let parsed: any = null;
+  try {
+    parsed = await response.json();
+  } catch (e) {
+    // no JSON body
+    parsed = null;
+  }
+
+  // If backend returns { status, data, ... } shape, use it
+  if (
+    parsed &&
+    typeof parsed === "object" &&
+    Object.prototype.hasOwnProperty.call(parsed, "status") &&
+    Object.prototype.hasOwnProperty.call(parsed, "data")
+  ) {
+    return parsed as ApiResponse<T>;
+  }
+
+  // If backend returns { status, content, ... } shape (Spring-style), map content to data
+  if (
+    parsed &&
+    typeof parsed === "object" &&
+    Object.prototype.hasOwnProperty.call(parsed, "content")
+  ) {
+    return {
+      status: parsed.status ?? response.status,
+      data: parsed.content as T,
+      message: parsed.message ? String(parsed.message) : "",
+    };
+  }
+
+  // Otherwise wrap the parsed body into ApiResponse
+  return {
+    status: response.status,
+    data: (parsed as T) ?? (null as any),
+    message: parsed && parsed.message ? String(parsed.message) : "",
+  };
 }
 
 function toFormData(obj: Record<string, any>): string {

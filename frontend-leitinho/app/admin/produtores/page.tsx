@@ -53,7 +53,7 @@ export default function ProdutoresPage() {
   async function loadProdutores() {
     try {
       const response = await usersApi.list();
-      const allUsers = response.data || [];
+      const allUsers = Array.isArray(response.data) ? response.data : [];
       const produtoresList = allUsers.filter(
         (u: User) => u.user?.iduserTypes === USER_TYPES.PRODUTOR
       );
