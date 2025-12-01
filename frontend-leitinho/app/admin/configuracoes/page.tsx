@@ -48,8 +48,8 @@ export default function ConfiguracoesPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Configurações</h1>
-        <p className="text-gray-500 mt-1">Configurações do sistema</p>
+        <h1 className="text-2xl font-bold text-[#2C3E50]">Configurações</h1>
+        <p className="text-[#6E7F80] mt-1">Configurações do sistema</p>
       </div>
 
       {/* Settings Grid */}
@@ -58,12 +58,12 @@ export default function ConfiguracoesPage() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Database className="w-5 h-5 text-blue-600" />
+              <Database className="w-5 h-5 text-[#4C9A6A]" />
               <CardTitle>Dados Iniciais</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-[#6E7F80] mb-4">
               Carrega os dados iniciais do sistema, incluindo tipos de animais
               (vaca, cabra) e tipos de usuários (coletor, produtor, laticínio,
               admin).
@@ -73,8 +73,8 @@ export default function ConfiguracoesPage() {
               <div
                 className={`flex items-center gap-2 p-3 rounded-lg mb-4 ${
                   loadResult.success
-                    ? "bg-green-50 text-green-800"
-                    : "bg-red-50 text-red-800"
+                    ? "bg-[#4CAF50]/20 text-[#4CAF50]"
+                    : "bg-[#F44336]/20 text-[#F44336]"
                 }`}
               >
                 {loadResult.success ? (
@@ -117,20 +117,20 @@ export default function ConfiguracoesPage() {
           <CardContent>
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Versão</span>
+                <span className="text-sm text-[#6E7F80]">Versão</span>
                 <span className="text-sm font-medium">1.0.0</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Frontend</span>
+                <span className="text-sm text-[#6E7F80]">Frontend</span>
                 <span className="text-sm font-medium">Next.js 16</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Backend</span>
+                <span className="text-sm text-[#6E7F80]">Backend</span>
                 <span className="text-sm font-medium">Spring Boot</span>
               </div>
               <div className="flex justify-between py-2">
-                <span className="text-sm text-gray-600">API URL</span>
-                <span className="text-sm font-medium text-blue-600">
+                <span className="text-sm text-[#6E7F80]">API URL</span>
+                <span className="text-sm font-medium text-[#4C9A6A]">
                   {process.env.NEXT_PUBLIC_API_URL ||
                     "http://localhost:8080/api"}
                 </span>

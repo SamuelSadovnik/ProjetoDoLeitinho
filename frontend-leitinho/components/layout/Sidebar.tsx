@@ -40,9 +40,9 @@ export function Sidebar() {
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         {isMobileMenuOpen ? (
-          <X className="w-6 h-6 text-gray-600" />
+          <X className="w-6 h-6 text-[#6E7F80]" />
         ) : (
-          <Menu className="w-6 h-6 text-gray-600" />
+          <Menu className="w-6 h-6 text-[#6E7F80]" />
         )}
       </button>
 
@@ -65,12 +65,12 @@ export function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-200">
-            <div className="p-2 bg-blue-600 rounded-xl">
+            <div className="p-2 bg-[#4C9A6A] rounded-xl">
               <Milk className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">Leitinho</h1>
-              <p className="text-xs text-gray-500">Painel Admin</p>
+              <h1 className="text-lg font-bold text-[#2C3E50]">Leitinho</h1>
+              <p className="text-xs text-[#6E7F80]">Painel Admin</p>
             </div>
           </div>
 
@@ -89,14 +89,14 @@ export function Sidebar() {
                       className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-blue-50 text-blue-700"
-                          : "text-gray-700 hover:bg-gray-100"
+                          ? "bg-[#A8D5BA]/30 text-[#4C9A6A]"
+                          : "text-[#6E7F80] hover:bg-gray-100"
                       )}
                     >
                       <item.icon
                         className={cn(
                           "w-5 h-5",
-                          isActive ? "text-blue-700" : "text-gray-500"
+                          isActive ? "text-[#4C9A6A]" : "text-[#6E7F80]"
                         )}
                       />
                       {item.name}
@@ -109,8 +109,8 @@ export function Sidebar() {
 
           {/* Footer */}
           <div className="px-3 py-4 border-t border-gray-200">
-            <button className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
-              <LogOut className="w-5 h-5 text-gray-500" />
+            <button className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-[#6E7F80] hover:bg-gray-100 transition-colors">
+              <LogOut className="w-5 h-5 text-[#6E7F80]" />
               Sair
             </button>
           </div>

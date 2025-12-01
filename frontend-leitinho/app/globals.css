@@ -3,6 +3,21 @@
 :root {
   --background: #f9fafb;
   --foreground: #171717;
+  
+  /* Cores do App Mobile - Identidade Visual Leitinho */
+  --primary-green: #4C9A6A;
+  --primary-green-dark: #3D7B55;
+  --primary-green-light: #5DB07E;
+  --soft-green: #A8D5BA;
+  --soft-green-light: #C5E5D2;
+  --light-blue: #B3DDF2;
+  --snow-white: #FFFFFF;
+  --light-gray: #6E7F80;
+  --dark-blue: #2C3E50;
+  --success: #4CAF50;
+  --error: #F44336;
+  --info: #2196F3;
+  --warning: #FF9800;
 }
 
 @theme inline {
@@ -10,6 +25,16 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Custom colors para Tailwind */
+  --color-primary: var(--primary-green);
+  --color-primary-dark: var(--primary-green-dark);
+  --color-primary-light: var(--primary-green-light);
+  --color-soft-green: var(--soft-green);
+  --color-soft-green-light: var(--soft-green-light);
+  --color-light-blue: var(--light-blue);
+  --color-dark-blue: var(--dark-blue);
+  --color-light-gray: var(--light-gray);
 }
 
 body {

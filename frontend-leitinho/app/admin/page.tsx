@@ -93,8 +93,8 @@ export default function AdminDashboard() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-500 mt-1">Visão geral do sistema</p>
+        <h1 className="text-2xl font-bold text-[#2C3E50]">Dashboard</h1>
+        <p className="text-[#6E7F80] mt-1">Visão geral do sistema</p>
       </div>
 
       {/* Stats Grid */}
@@ -123,13 +123,13 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-blue-600" />
+              <Calendar className="w-5 h-5 text-[#4C9A6A]" />
               <CardTitle>Coletas Recentes</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
             {recentCollections.length === 0 ? (
-              <p className="text-gray-500 text-center py-4">
+              <p className="text-[#6E7F80] text-center py-4">
                 Nenhuma coleta encontrada
               </p>
             ) : (
@@ -137,22 +137,22 @@ export default function AdminDashboard() {
                 {recentCollections.map((collection) => (
                   <div
                     key={collection.idcollection}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-[#A8D5BA]/10 rounded-lg"
                   >
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-[#2C3E50]">
                         {collection.farm?.name || "Fazenda"}
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-[#6E7F80]">
                         {collection.producer?.name || "Produtor"} •{" "}
                         {formatDateTime(collection.collectionDate)}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="font-semibold text-blue-600">
+                      <p className="font-semibold text-[#4C9A6A]">
                         {formatNumber(collection.quantity)} L
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-[#6E7F80]">
                         {collection.temperature}°C
                       </p>
                     </div>
@@ -167,13 +167,13 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-green-600" />
+              <TrendingUp className="w-5 h-5 text-[#4C9A6A]" />
               <CardTitle>Usuários Recentes</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
             {recentUsers.length === 0 ? (
-              <p className="text-gray-500 text-center py-4">
+              <p className="text-[#6E7F80] text-center py-4">
                 Nenhum usuário encontrado
               </p>
             ) : (
@@ -181,24 +181,24 @@ export default function AdminDashboard() {
                 {recentUsers.map((user) => (
                   <div
                     key={user.iduser}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-[#A8D5BA]/10 rounded-lg"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                        <Users className="w-5 h-5 text-blue-600" />
+                      <div className="w-10 h-10 bg-[#A8D5BA]/40 rounded-full flex items-center justify-center">
+                        <Users className="w-5 h-5 text-[#4C9A6A]" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900 capitalize">
+                        <p className="font-medium text-[#2C3E50] capitalize">
                           {user.name}
                         </p>
-                        <p className="text-sm text-gray-500">{user.email}</p>
+                        <p className="text-sm text-[#6E7F80]">{user.email}</p>
                       </div>
                     </div>
                     <span
                       className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
                         user.active
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
+                          ? "bg-[#4CAF50]/20 text-[#4CAF50]"
+                          : "bg-[#F44336]/20 text-[#F44336]"
                       }`}
                     >
                       {user.active ? "Ativo" : "Inativo"}

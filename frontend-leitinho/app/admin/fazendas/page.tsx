@@ -155,8 +155,8 @@ export default function FazendasPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Fazendas</h1>
-          <p className="text-gray-500 mt-1">Gerencie as fazendas cadastradas</p>
+          <h1 className="text-2xl font-bold text-[#2C3E50]">Fazendas</h1>
+          <p className="text-[#6E7F80] mt-1">Gerencie as fazendas cadastradas</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
@@ -174,7 +174,7 @@ export default function FazendasPage() {
               placeholder="Buscar por nome ou produtor..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#4C9A6A]"
             />
           </div>
         </CardContent>
@@ -196,7 +196,7 @@ export default function FazendasPage() {
             <TableBody>
               {filteredFazendas.length === 0 ? (
                 <TableRow>
-                  <TableCell className="text-center py-8 text-gray-500">
+                  <TableCell className="text-center py-8 text-[#6E7F80]">
                     Nenhuma fazenda encontrada
                   </TableCell>
                 </TableRow>
@@ -221,21 +221,21 @@ export default function FazendasPage() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openQrCodeModal(fazenda)}
-                          className="p-1.5 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6E7F80] hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
                           title="QR Code"
                         >
                           <QrCode className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => openEditModal(fazenda)}
-                          className="p-1.5 text-gray-500 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6E7F80] hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
                           title="Editar"
                         >
                           <Pencil className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDelete(fazenda)}
-                          className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6E7F80] hover:text-[#F44336] hover:bg-[#F44336]/10 rounded-lg transition-colors"
                           title="Excluir"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -308,14 +308,14 @@ export default function FazendasPage() {
               <a
                 href={`data:image/png;base64,${qrCodeData}`}
                 download={`qrcode-${selectedFarm?.name || "fazenda"}.png`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#4C9A6A] text-white rounded-lg hover:bg-[#3D7B55] transition-colors"
               >
                 <Download className="w-4 h-4" />
                 Baixar QR Code
               </a>
             </>
           ) : (
-            <p className="text-gray-500">Carregando QR Code...</p>
+            <p className="text-[#6E7F80]">Carregando QR Code...</p>
           )}
         </div>
       </Modal>

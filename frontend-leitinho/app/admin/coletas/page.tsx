@@ -230,8 +230,8 @@ export default function ColetasPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Coletas</h1>
-          <p className="text-gray-500 mt-1">Gerencie as coletas de leite</p>
+          <h1 className="text-2xl font-bold text-[#2C3E50]">Coletas</h1>
+          <p className="text-[#6E7F80] mt-1">Gerencie as coletas de leite</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
@@ -249,7 +249,7 @@ export default function ColetasPage() {
               placeholder="Buscar por fazenda, produtor ou coletor..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#4C9A6A]"
             />
           </div>
         </CardContent>
@@ -274,7 +274,7 @@ export default function ColetasPage() {
             <TableBody>
               {filteredColetas.length === 0 ? (
                 <TableRow>
-                  <TableCell className="text-center py-8 text-gray-500">
+                  <TableCell className="text-center py-8 text-[#6E7F80]">
                     Nenhuma coleta encontrada
                   </TableCell>
                 </TableRow>
@@ -308,21 +308,21 @@ export default function ColetasPage() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openDetailModal(coleta)}
-                          className="p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6E7F80] hover:text-[#4C9A6A] hover:bg-[#A8D5BA]/30 rounded-lg transition-colors"
                           title="Detalhes"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => openEditModal(coleta)}
-                          className="p-1.5 text-gray-500 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6E7F80] hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
                           title="Editar"
                         >
                           <Pencil className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDelete(coleta)}
-                          className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6E7F80] hover:text-[#F44336] hover:bg-[#F44336]/10 rounded-lg transition-colors"
                           title="Excluir"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -471,7 +471,7 @@ export default function ColetasPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, observations: e.target.value })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4C9A6A] focus:border-[#4C9A6A]"
                 placeholder="Observações sobre a coleta..."
               />
             </div>
@@ -509,57 +509,57 @@ export default function ColetasPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-gray-500">Fazenda</p>
+                <p className="text-sm text-[#6E7F80]">Fazenda</p>
                 <p className="font-medium capitalize">
                   {selectedColeta.farm?.name}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Produtor</p>
+                <p className="text-sm text-[#6E7F80]">Produtor</p>
                 <p className="font-medium capitalize">
                   {selectedColeta.producer?.name}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Coletor</p>
+                <p className="text-sm text-[#6E7F80]">Coletor</p>
                 <p className="font-medium capitalize">
                   {selectedColeta.collector?.name}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Animal</p>
+                <p className="text-sm text-[#6E7F80]">Animal</p>
                 <p className="font-medium capitalize">
                   {selectedColeta.animal?.name}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Quantidade</p>
+                <p className="text-sm text-[#6E7F80]">Quantidade</p>
                 <p className="font-medium">
                   {formatNumber(selectedColeta.quantity)} Litros
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Temperatura</p>
+                <p className="text-sm text-[#6E7F80]">Temperatura</p>
                 <p className="font-medium">{selectedColeta.temperature}°C</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Acidez</p>
+                <p className="text-sm text-[#6E7F80]">Acidez</p>
                 <p className="font-medium">{selectedColeta.acidity}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Produtor Presente</p>
+                <p className="text-sm text-[#6E7F80]">Produtor Presente</p>
                 <p className="font-medium">
                   {selectedColeta.producerPresent ? "Sim" : "Não"}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Data da Coleta</p>
+                <p className="text-sm text-[#6E7F80]">Data da Coleta</p>
                 <p className="font-medium">
                   {formatDateTime(selectedColeta.collectionDate)}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Data de Cadastro</p>
+                <p className="text-sm text-[#6E7F80]">Data de Cadastro</p>
                 <p className="font-medium">
                   {formatDateTime(selectedColeta.dataCadastro)}
                 </p>
@@ -568,7 +568,7 @@ export default function ColetasPage() {
 
             {selectedColeta.observations && (
               <div>
-                <p className="text-sm text-gray-500 mb-1">Observações</p>
+                <p className="text-sm text-[#6E7F80] mb-1">Observações</p>
                 <p className="p-3 bg-gray-50 rounded-lg text-sm">
                   {selectedColeta.observations}
                 </p>

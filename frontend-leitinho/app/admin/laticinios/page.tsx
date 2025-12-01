@@ -144,8 +144,8 @@ export default function LaticiniosPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Laticínios</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="text-2xl font-bold text-[#2C3E50]">Laticínios</h1>
+          <p className="text-[#6E7F80] mt-1">
             Gerencie os laticínios cadastrados
           </p>
         </div>
@@ -165,7 +165,7 @@ export default function LaticiniosPage() {
               placeholder="Buscar por nome..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#4C9A6A]"
             />
           </div>
         </CardContent>
@@ -186,7 +186,7 @@ export default function LaticiniosPage() {
             <TableBody>
               {filteredLaticinios.length === 0 ? (
                 <TableRow>
-                  <TableCell className="text-center py-8 text-gray-500">
+                  <TableCell className="text-center py-8 text-[#6E7F80]">
                     Nenhum laticínio encontrado
                   </TableCell>
                 </TableRow>
@@ -199,7 +199,7 @@ export default function LaticiniosPage() {
                         {laticinio.name}
                       </TableCell>
                       <TableCell>
-                        <span className="px-2.5 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                        <span className="px-2.5 py-0.5 bg-[#A8D5BA]/40 text-[#4C9A6A] rounded-full text-xs font-medium">
                           {dairyUsers.length} usuário(s)
                         </span>
                       </TableCell>
@@ -210,21 +210,21 @@ export default function LaticiniosPage() {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => openUsersModal(laticinio)}
-                            className="p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                            className="p-1.5 text-[#6E7F80] hover:text-[#4C9A6A] hover:bg-[#A8D5BA]/30 rounded-lg transition-colors"
                             title="Ver Usuários"
                           >
                             <Users className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => openEditModal(laticinio)}
-                            className="p-1.5 text-gray-500 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
+                            className="p-1.5 text-[#6E7F80] hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
                             title="Editar"
                           >
                             <Pencil className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleDelete(laticinio)}
-                            className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            className="p-1.5 text-[#6E7F80] hover:text-[#F44336] hover:bg-[#F44336]/10 rounded-lg transition-colors"
                             title="Excluir"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -279,7 +279,7 @@ export default function LaticiniosPage() {
         {selectedLaticinio && (
           <>
             {getLatinicoUsers(selectedLaticinio.iddairy).length === 0 ? (
-              <p className="text-center text-gray-500 py-8">
+              <p className="text-center text-[#6E7F80] py-8">
                 Nenhum usuário vinculado a este laticínio
               </p>
             ) : (
@@ -291,13 +291,13 @@ export default function LaticiniosPage() {
                   >
                     <div>
                       <p className="font-medium capitalize">{user.name}</p>
-                      <p className="text-sm text-gray-500">{user.email}</p>
+                      <p className="text-sm text-[#6E7F80]">{user.email}</p>
                     </div>
                     <span
                       className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
                         user.active
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
+                          ? "bg-[#4CAF50]/20 text-[#4CAF50]"
+                          : "bg-[#F44336]/20 text-[#F44336]"
                       }`}
                     >
                       {user.active ? "Ativo" : "Inativo"}

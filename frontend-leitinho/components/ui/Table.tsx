@@ -20,7 +20,7 @@ export function Table({ children, className }: TableProps) {
 export function TableHeader({ children, className }: TableProps) {
   return (
     <thead
-      className={cn("text-xs text-gray-700 uppercase bg-gray-50", className)}
+      className={cn("text-xs text-[#6E7F80] uppercase bg-[#A8D5BA]/10", className)}
     >
       {children}
     </thead>
