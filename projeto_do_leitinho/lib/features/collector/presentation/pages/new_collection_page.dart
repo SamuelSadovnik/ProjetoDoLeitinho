@@ -7,8 +7,13 @@ import '../../../../core/services/api_service.dart';
 
 class NewCollectionPage extends StatefulWidget {
   final UserModel collector;
+  final FarmModel? preSelectedFarm;
 
-  const NewCollectionPage({super.key, required this.collector});
+  const NewCollectionPage({
+    super.key,
+    required this.collector,
+    this.preSelectedFarm,
+  });
 
   @override
   State<NewCollectionPage> createState() => _NewCollectionPageState();
@@ -82,6 +87,19 @@ class _NewCollectionPageState extends State<NewCollectionPage> {
             _selectedAnimal = _animals.first;
           }
         }
+      }
+
+      // Se há uma fazenda pré-selecionada via QR Code, usar ela
+      if (widget.preSelectedFarm != null) {
+        _selectedFarm = _farms.firstWhere(
+          (f) => f.idfarm == widget.preSelectedFarm!.idfarm,
+          orElse: () => widget.preSelectedFarm!,
+        );
+        // Auto-selecionar o produtor da fazenda
+        final matchingProducer = _producers
+            .where((p) => p.iduser == _selectedFarm!.producer.iduser)
+            .firstOrNull;
+        _selectedProducer = matchingProducer;
       }
 
       setState(() {

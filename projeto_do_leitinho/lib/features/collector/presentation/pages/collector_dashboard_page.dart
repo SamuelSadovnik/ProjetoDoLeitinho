@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/models/models.dart';
 import '../../../../core/services/api_service.dart';
-import 'new_collection_page.dart';
 import 'collection_history_page.dart';
+import 'scan_farm_qr_page.dart';
 
 class CollectorDashboardPage extends StatefulWidget {
   final UserModel user;
@@ -154,7 +154,7 @@ class _CollectorDashboardPageState extends State<CollectorDashboardPage> {
                             context,
                             MaterialPageRoute(
                               builder: (_) =>
-                                  NewCollectionPage(collector: widget.user),
+                                  ScanFarmQrPage(collector: widget.user),
                             ),
                           );
                           _loadDashboardData();
