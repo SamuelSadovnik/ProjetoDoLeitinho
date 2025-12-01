@@ -24,7 +24,7 @@ const navigation = [
   { name: "Fazendas", href: "/admin/fazendas", icon: Tractor },
   { name: "Coletores", href: "/admin/coletores", icon: Truck },
   { name: "Coletas", href: "/admin/coletas", icon: Droplets },
-  { name: "Laticínios", href: "/admin/laticinios", icon: Building2 },
+  // { name: "Laticínios", href: "/admin/laticinios", icon: Building2 },
   { name: "Configurações", href: "/admin/configuracoes", icon: Settings },
 ];
 
