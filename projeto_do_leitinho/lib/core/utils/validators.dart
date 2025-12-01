@@ -56,12 +56,9 @@ class Validators {
 
     final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
 
-    if (cleanValue.length == 11) {
-      if (!isCPF(value)) return 'CPF inválido';
-    } else if (cleanValue.length == 14) {
-      if (!isCNPJ(value)) return 'CNPJ inválido';
-    } else {
-      return 'CPF ou CNPJ inválido';
+    // Aceita CPF (11 dígitos) ou CNPJ (14 dígitos) sem validar dígitos verificadores
+    if (cleanValue.length != 11 && cleanValue.length != 14) {
+      return 'CPF deve ter 11 dígitos ou CNPJ deve ter 14 dígitos';
     }
 
     return null;

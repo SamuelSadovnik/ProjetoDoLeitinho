@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 enum Environment { development, staging, production }
 
 class AppConfig {
@@ -19,12 +21,26 @@ class AppConfig {
 
   static late AppConfig instance;
 
+  // ⚠️ ALTERE ESTE IP PARA O IP DA SUA MÁQUINA NA REDE LOCAL (para dispositivos físicos)
+  // Para descobrir seu IP, execute 'ipconfig' no terminal Windows
+  static const String _localMachineIp = '192.168.229.184';
+
+  static String _getDevApiUrl() {
+    if (kIsWeb) {
+      // Para Chrome/Web, usa localhost
+      return 'http://localhost:8080/api';
+    } else {
+      // Para dispositivo físico Android/iOS, usa o IP da máquina
+      return 'http://$_localMachineIp:8080/api';
+    }
+  }
+
   static void initialize(Environment env) {
     switch (env) {
       case Environment.development:
         instance = AppConfig._(
           environment: env,
-          apiBaseUrl: 'http://localhost:3000/api',
+          apiBaseUrl: _getDevApiUrl(),
           appName: 'PuroLácteo DEV',
           enableLogging: true,
           enableAnalytics: false,

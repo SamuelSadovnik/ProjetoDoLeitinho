@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/utils/validators.dart';
+import '../../../../core/services/api_service.dart';
 import '../bloc/auth_bloc.dart';
 import '../../../collector/presentation/pages/collector_dashboard_page.dart';
 import '../../../producer/presentation/pages/producer_dashboard_page.dart';
@@ -40,10 +41,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleLogin() {
     if (_formKey.currentState!.validate()) {
+      final apiService = context.read<ApiService>();
       context.read<AuthBloc>().add(
         LoginRequested(
           document: _documentController.text,
           password: _passwordController.text,
+          apiService: apiService,
         ),
       );
     }
@@ -56,11 +59,31 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           if (state is AuthCollectorAuthenticated) {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const CollectorDashboardPage()),
+              MaterialPageRoute(
+                builder: (_) => CollectorDashboardPage(user: state.user),
+              ),
             );
           } else if (state is AuthProducerAuthenticated) {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const ProducerDashboardPage()),
+              MaterialPageRoute(
+                builder: (_) => ProducerDashboardPage(user: state.user),
+              ),
+            );
+          } else if (state is AuthDairyAuthenticated) {
+            // Por enquanto, laticínio usa o mesmo dashboard do produtor
+            // TODO: Criar dashboard específico para laticínio
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) => ProducerDashboardPage(user: state.user),
+              ),
+            );
+          } else if (state is AuthAdminAuthenticated) {
+            // Por enquanto, admin usa o mesmo dashboard do coletor
+            // TODO: Criar dashboard específico para admin
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) => CollectorDashboardPage(user: state.user),
+              ),
             );
           } else if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(

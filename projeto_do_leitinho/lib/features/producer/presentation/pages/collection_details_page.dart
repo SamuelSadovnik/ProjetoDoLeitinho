@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/models/models.dart';
 
 class CollectionDetailsPage extends StatelessWidget {
-  final Map<String, dynamic> collection;
+  final CollectionModel collection;
 
   const CollectionDetailsPage({super.key, required this.collection});
 
@@ -25,13 +26,9 @@ class CollectionDetailsPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        collection['approved']
-                            ? Icons.check_circle
-                            : Icons.cancel,
-                        color: collection['approved']
-                            ? AppColors.success
-                            : AppColors.error,
+                      const Icon(
+                        Icons.check_circle,
+                        color: AppColors.success,
                         size: 32,
                       ),
                       const SizedBox(width: 12),
@@ -40,16 +37,12 @@ class CollectionDetailsPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              collection['quality'],
+                              'Coleta #${collection.idcollection}',
                               style: Theme.of(context).textTheme.titleLarge
-                                  ?.copyWith(
-                                    color: collection['approved']
-                                        ? AppColors.success
-                                        : AppColors.error,
-                                  ),
+                                  ?.copyWith(color: AppColors.success),
                             ),
                             Text(
-                              'ID: ${collection['id']} • ${collection['date']}',
+                              collection.formattedDate,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ],
@@ -69,60 +62,59 @@ class CollectionDetailsPage extends StatelessWidget {
               _buildInfoRow(
                 context,
                 'Quantidade',
-                '${collection['quantity']}L',
+                '${collection.quantity.toStringAsFixed(1)}L',
                 Icons.local_drink,
               ),
               const Divider(height: 24),
               _buildInfoRow(
                 context,
                 'Temperatura',
-                '${collection['temperature']}°C',
+                '${collection.temperature.toStringAsFixed(1)}°C',
                 Icons.thermostat,
               ),
               const Divider(height: 24),
               _buildInfoRow(
                 context,
                 'Acidez',
-                '${collection['acidity']}',
+                collection.acidity.toStringAsFixed(2),
                 Icons.science,
               ),
               const Divider(height: 24),
-              _buildInfoRow(context, 'Coletor', 'João Silva', Icons.person),
-            ],
-          ),
-          const SizedBox(height: 16),
-          _buildSection(
-            context,
-            title: 'Indicadores de Qualidade',
-            children: [
-              _buildIndicatorRow(
+              _buildInfoRow(
                 context,
-                'Antibiótico',
-                collection['indicators']['antibiotic'],
-                collection['indicators']['antibiotic'] == 'Negativo',
+                'Coletor',
+                collection.collector.name,
+                Icons.person,
               ),
               const Divider(height: 24),
-              _buildIndicatorRow(
+              _buildInfoRow(
                 context,
-                'Gordura',
-                collection['indicators']['fat'],
-                true,
+                'Fazenda',
+                collection.farm.name,
+                Icons.terrain,
+              ),
+              const Divider(height: 24),
+              _buildInfoRow(
+                context,
+                'Produtor Presente',
+                collection.producerPresent ? 'Sim' : 'Não',
+                collection.producerPresent ? Icons.check : Icons.close,
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          _buildSection(
-            context,
-            title: 'Observações',
-            children: [
-              Text(
-                collection['approved']
-                    ? 'Leite dentro dos padrões de qualidade.'
-                    : 'Leite reprovado devido à presença de antibiótico.',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
-          ),
+          if (collection.observations.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            _buildSection(
+              context,
+              title: 'Observações',
+              children: [
+                Text(
+                  collection.observations,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );
@@ -169,49 +161,6 @@ class CollectionDetailsPage extends StatelessWidget {
                 style: Theme.of(
                   context,
                 ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildIndicatorRow(
-    BuildContext context,
-    String label,
-    String value,
-    bool isGood,
-  ) {
-    return Row(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: (isGood ? AppColors.success : AppColors.error).withOpacity(
-              0.1,
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(
-            isGood ? Icons.check : Icons.close,
-            color: isGood ? AppColors.success : AppColors.error,
-            size: 20,
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(label, style: Theme.of(context).textTheme.bodyMedium),
-              const SizedBox(height: 4),
-              Text(
-                value,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: isGood ? AppColors.success : AppColors.error,
-                ),
               ),
             ],
           ),

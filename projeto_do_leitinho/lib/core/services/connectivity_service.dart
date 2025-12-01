@@ -10,15 +10,13 @@ class ConnectivityService {
 
   ConnectivityService() {
     _initConnectivity();
-    _connectivity.onConnectivityChanged.listen(
-      _updateConnectionStatus as void Function(List<ConnectivityResult> event)?,
-    );
+    _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   Future<void> _initConnectivity() async {
     try {
       final result = await _connectivity.checkConnectivity();
-      _updateConnectionStatus(result as ConnectivityResult);
+      _updateConnectionStatus(result);
     } catch (e) {
       print('Connectivity check error: $e');
       _isConnected = false;
@@ -26,9 +24,9 @@ class ConnectivityService {
     }
   }
 
-  void _updateConnectionStatus(ConnectivityResult result) {
+  void _updateConnectionStatus(List<ConnectivityResult> results) {
     final wasConnected = _isConnected;
-    _isConnected = result != ConnectivityResult.none;
+    _isConnected = !results.contains(ConnectivityResult.none);
 
     if (wasConnected != _isConnected) {
       _controller.add(_isConnected);
@@ -41,8 +39,8 @@ class ConnectivityService {
   bool get isConnected => _isConnected;
 
   Future<bool> checkConnection() async {
-    final result = await _connectivity.checkConnectivity();
-    return result != ConnectivityResult.none;
+    final results = await _connectivity.checkConnectivity();
+    return !results.contains(ConnectivityResult.none);
   }
 
   void dispose() {

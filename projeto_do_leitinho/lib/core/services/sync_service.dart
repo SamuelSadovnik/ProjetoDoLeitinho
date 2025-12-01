@@ -45,7 +45,19 @@ class SyncService {
 
       for (var collection in pendingCollections) {
         try {
-          await apiService.createCollection(collection.toJson());
+          final data = collection.toJson();
+          await apiService.createCollection(
+            farmId: data['farmId'] ?? 0,
+            producerId: data['producerId'] ?? 0,
+            collectorId: data['collectorId'] ?? 0,
+            animalId: data['animalId'] ?? 1,
+            quantity: (data['quantity'] ?? 0).toDouble(),
+            temperature: (data['temperature'] ?? 0).toDouble(),
+            acidity: (data['acidity'] ?? 0).toDouble(),
+            producerPresent: data['producerPresent'] ?? false,
+            collectionDate:
+                data['collectionDate'] ?? DateTime.now().toIso8601String(),
+          );
 
           // Remove from pending after successful sync
           final key =
